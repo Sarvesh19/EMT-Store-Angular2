@@ -3,7 +3,7 @@ import { OrderInfo } from './order-info';
 
 export class Order {
     identifier: string;
-    userID: string;
+    userId: string;
     lineItemList: LineItem[];
     orderInfo: OrderInfo;
 }
