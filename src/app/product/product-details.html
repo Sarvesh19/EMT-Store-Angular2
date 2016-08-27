@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="thumbnail" *ngIf="product">
+                <img class="img-responsive" [src]="product.picture" [title]="product.productName">
+                <div class="caption">
+                    <hr/>
+                    <h4 class="pull-right price">$<span>{{product.price}}</span></h4>
+                    <h4>
+                        {{product.productName}}
+                    </h4>
+                    <div class="ratings">
+                        <hr/>
+                        <p class="pull-right">18 reviews</p>
+                        <p>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </p>
+                        <button class="btn btn-default" (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
+                        <button class="btn btn-danger" (click)="addToWishlist()">Add to wish list</button>
+                        <button class="btn btn-primary" (click)="addToCart()">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

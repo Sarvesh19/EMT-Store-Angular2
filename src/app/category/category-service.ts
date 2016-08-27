@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../model/category';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx'; 
 
 @Injectable()
 export class CategoryService {
@@ -24,7 +25,7 @@ export class CategoryService {
     }
 
     getAllCategories(): Observable<Category[]> {
-        return this._http.get(this._categoryUrl)
+        return this._http.get(this._categoryUrl,{withCredentials:true})
             .map((response:Response) => <Category[]>response.json())
             .do(data => console.log("All categories: " + JSON.stringify(data)))
             .catch(this.handleError);

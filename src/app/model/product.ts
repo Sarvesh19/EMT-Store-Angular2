@@ -2,11 +2,10 @@ export class Product {
     identifier: string;
     productName: string;
     productCategory: string;
+    description: string;
     price: string;
     quantity: string;
-    description: string;
-    isAvailable: string;
-    picture: File;
-
+    //isAvailable: string;
+    picture: string;
     constructor() {}
 }
