@@ -8,4 +8,10 @@ export class Product {
     //isAvailable: string;
     picture: string;
     constructor() {}
+
+    calculateSubTotal(): number {
+        let priceNum = +this.price;
+        let quantityNum = +this.quantity;
+        return priceNum * quantityNum;
+    }
 }

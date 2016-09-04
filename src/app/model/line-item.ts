@@ -1,4 +1,4 @@
 export class LineItem {
-    productID: string;
+    identifier: string;
     productQuantity: string;
 }

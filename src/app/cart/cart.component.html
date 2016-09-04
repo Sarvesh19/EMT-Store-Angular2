@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <div class='col-md-10 col-md-offset-1'>
+            <table class="table">
+                <thead>
+                    <th style="width:35%;">Product</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center" style="width:10%;">Quantity</th>
+                    <th class="text-center">Subtotal</th>
+                    <th> </th>
+                </thead>
+                <tbody *ngIf="products">
+                    <tr *ngFor="let product of products">
+                        <td class="text-center">
+                            <div class="pull-left">
+                                <img [src]="product.picture" style="width:150px;">
+                            </div>
+                            <div class="padding2">
+                                <a [routerLink]="['/product', product.identifier]">{{product.productName}}</a>
+                            </div>
+                        </td>
+                        <td class="text-center padding">
+                            {{product.price}}
+                        </td>
+                        <td class="text-center padding">
+                            <input type="number" class="text-center" step="1.0" min="0" [ngModel]="product.quantity">
+                        </td>
+                        <td class="text-center padding">
+                            {{ product.quantity * product.price | number: '1.2-2' }}
+                        </td>
+                        <td class="padding2">
+                            <button class="btn btn-danger" (click)="removeItem(product)">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    <td>
+                        <div class="pull-right">
+                            <button class="btn btn-warning">Continue to checkout <i class="glyphicon glyphicon-chevron-right"></i></button>
+                        </div>
+                    </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

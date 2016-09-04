@@ -1,0 +1,22 @@
+[
+    {
+        "identifier": "1",
+        "productQuantity": 2
+    },
+    {
+        "identifier": "2",
+        "productQuantity": 1
+    },
+    {
+        "identifier": "5",
+        "productQuantity": 3
+    },
+    {
+        "identifier": "1",
+        "productQuantity": 2
+    },
+    {
+        "identifier": "10",
+        "productQuantity": 4
+    }
+]

@@ -3,6 +3,7 @@ import { Product } from '../model/product';
 import { ProductService } from './product-service';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
     templateUrl: 'app/product/product-details.html',
@@ -15,7 +16,8 @@ export class ProductDetailsComponent implements OnInit {
 
     constructor(private _productService: ProductService,
         private _route: ActivatedRoute,
-        private _router: Router) {
+        private _router: Router,
+        private _location: Location) {
     }
 
     ngOnInit() {
@@ -29,7 +31,7 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     goBack() {
-        this._router.navigate(['category', this.product.productCategory]);
+        this._location.back();
     }
 
     addToWishlist() {

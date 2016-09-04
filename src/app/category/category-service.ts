@@ -10,9 +10,9 @@ export class CategoryService {
 
     constructor(private _http : Http) { }
 
-    createNewCategory(categoryName:string,isMain:boolean,supCategory:Category){
+    createNewCategory(categoryName:string,mainCategory:boolean,supCategory:Category){
  
-        let body = 'name=' +categoryName +'&mainCategory=' +isMain+'&supCategory=' +supCategory;
+        let body = 'name=' +categoryName +'&mainCategory=' +mainCategory+'&supCategory=' +supCategory;
         //console.log(body);
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
