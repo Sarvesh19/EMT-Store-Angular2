@@ -24,8 +24,7 @@ export class ProductDetailsComponent implements OnInit {
         if (!this.product) {
             this._route.params.subscribe(params => {
                 this.id = params['id'];
-                this._productService.getProduct(this.id).subscribe(product => this.product = product
-                ,() => console.log("PRODUCT ID " + this.product.identifier));
+                this._productService.getProduct(this.id).subscribe(product => this.product = product);
             });
         }
     }
@@ -39,6 +38,6 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     addToCart() {
-        
+
     }
 }

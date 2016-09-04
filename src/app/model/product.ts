@@ -2,11 +2,11 @@ export class Product {
     identifier: string;
     productName: string;
     productCategory: string;
-    description: string;
-    price: string;
-    quantity: string;
-    //isAvailable: string;
-    picture: string;
+    productDescription: string;
+    productPrice: number;
+    productQuantity: number;
+    productAvailability: string;
+    productPicture: string;
     constructor() {}
 
     calculateSubTotal(): number {

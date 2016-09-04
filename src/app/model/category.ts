@@ -1,6 +1,6 @@
 export class Category {
     identifier: string;
     categoryName: string;
-    mainCategory:boolean;
-    parentCategory:Category;
+    mainCategory: boolean;
+    parentCategory: string;
 }

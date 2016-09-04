@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from './product-service';
+import {Category} from "../model/category";
 import { Http } from '@angular/http';
 import { CategoryService } from '../category/category-service';
-import 'rxjs/Rx'; 
+import { LoginService } from '../login/login.service';
 
 @Component({
     templateUrl: 'app/product/add-new-product.html',
@@ -10,22 +11,21 @@ import 'rxjs/Rx';
 })
 
 export class AddNewProductComponent implements OnInit{
-    name: string;
-    category: string = "SubCategory";
-    price: string;
-    quantity: string;
-    description: string;
     picture: File;
 
-    constructor(//private _productService: ProductService,
-        private _http: Http//,
-        //private _categoryService: CategoryService
-        ) {
+  private categories: Array<Category> = new Array();
+  mainCategories: Array<Category> = new Array();
+  subCategories: Array<Category> = new Array();
+
+    constructor(private _productService: ProductService,
+                private _http: Http, private _categoryService: CategoryService, private userService: LoginService) {
         console.log("VLEGUVAM VO ADDNEWPRODUCTCOMPONENT");
     }
 
     ngOnInit() {
         console.log("VLEGUVAM VO ADDNEWPRODUCTCOMPONENT");
+      this.logging();
+      this.initializeCategories();
     }
 
     //onChange file listener
@@ -35,14 +35,36 @@ export class AddNewProductComponent implements OnInit{
         console.log(this.picture);
     }
 
-    onSubmit() {
+    onSubmit(data) {
+      console.log("NEW");
+      let product = data.product;
+      product.productCategory = 'b759c700-7cc6-4e15-967c-f8d24a4acfe4';
         console.log("Entering here!");
-        /*this._productService.createNewProduct(this.name,this.price,this.quantity,this.description,this.picture).subscribe(//call the post
-                data => console.log(JSON.stringify(data)), // put the data returned from the server in our variable
-                error => console.log("Error HTTP Post Service"), // in case of failure show this message
-                () => console.log("Job Done Post !")//run this code in all cases
-            );*/
+        console.log(product);
+        console.log(data);
+        this._productService.createNewProduct(product).subscribe(
+                data => console.log(JSON.stringify(data)),
+                error => console.log("Error HTTP Post Service"),
+                () => console.log("Job Done Post !")
+            );
     }
 
+  private initializeCategories() {
+    this._categoryService.getAllCategories().subscribe(
+      (result) => {
+        this.categories = result;
+        this.categories.map((category) => category.mainCategory? this.mainCategories.push(category) : this.subCategories.push(category));
+      }
+    );
+  }
+// TODO: fix this !!!
+  logging(): void {
+    this.userService.login('admin', 'admin').subscribe(
+      (result) => {
+        this.userService.hasUserSuccessfullyLoggedIn().subscribe(
+          (result) => { }
+        );
+      });
+  }
 
 }

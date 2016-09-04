@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-import 'rxjs/Rx';
+import {Component} from "@angular/core";
+import { ROUTER_DIRECTIVES, ActivatedRoute,RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  template: `<h2>Home</h2>`
+  selector: 'home',
+  templateUrl: 'app/home/home.component.html',
+  directives: [ROUTER_DIRECTIVES]
 })
-export class HomeComponent { 
+export class HomeComponent {
+
 }

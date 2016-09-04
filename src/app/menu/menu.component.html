@@ -1,0 +1,17 @@
+<ul class="nav nav-pills nav-stacked">
+  <nav>
+  <li *ngFor="let mainCategory of mainCategories" role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <span>{{mainCategory.categoryName}}</span>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <template ngFor let-subCategory [ngForOf]="subCategories">
+          <li *ngIf="mainCategory.identifier === subCategory.parentCategory">
+            <a [routerLink]="['/category/b759c700-7cc6-4e15-967c-f8d24a4acfe4']">{{subCategory.categoryName}}</a>
+          </li>
+      </template>
+    </ul>
+  </li>
+  </nav>
+</ul>
