@@ -20,13 +20,15 @@ export class LoginService {
   }
 
   hasUserSuccessfullyLoggedIn() {
-    let headers = new Headers({ 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' });
-    return this.http.get('http://localhost:8080/rest/user', { headers: headers })
+    // let headers = new Headers({ 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': '0' });
+    let headers = new Headers({});
+    return this.http.get('http://localhost:8080/rest/user', { headers: headers, withCredentials: true })
       .map(this.extractData);
   }
 
   private extractData(res: Response) {
     let body = res.json();
+    console.log(body);
     return body;
   }
 }

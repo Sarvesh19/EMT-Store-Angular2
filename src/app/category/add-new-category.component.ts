@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
     templateUrl: 'app/category/add-new-category.html'
 })
 
-export class AddNewCategoryComponent {
+export class AddNewCategoryComponent implements OnInit {
     isMain: boolean = false;
     categoryName: string = "";
     supCategory: Category = null;
@@ -22,6 +22,10 @@ export class AddNewCategoryComponent {
         private _http: Http,
         private _router: Router) {
 
+    }
+
+    ngOnInit() {
+      this.getCategories();
     }
 
     changeMain() {
@@ -69,10 +73,6 @@ export class AddNewCategoryComponent {
             error => this.errorMessage = <any>error,
             () => console.log("Site kategorii " + this.categories)
             );
-
-    }
-
-    ngOnInit(): void {
 
     }
 }

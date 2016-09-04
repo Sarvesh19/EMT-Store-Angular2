@@ -1,10 +1,12 @@
 import {Component} from "@angular/core";
 import {LoginService} from "./login.service";
 import {Router} from "@angular/router";
+import { ROUTER_DIRECTIVES, ActivatedRoute,RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'login',
-  templateUrl: 'app/login/login.component.html'
+  templateUrl: 'app/login/login.component.html',
+  directives: [ROUTER_DIRECTIVES]
 })
 export class LoginComponent {
 
@@ -25,10 +27,12 @@ export class LoginComponent {
               let userId = this.user.identifier;
               if(userId !== null) {
                 this.isLoggedIn = true;
-                this.router.navigate(['home']);
+                console.log("YEEEES");
+                //this.router.navigate(['home']);
               } else {
                 this.isLoggedIn = false;
-                this.router.navigate(['home']);
+                console.log("NOOOO");
+                //this.router.navigate(['home']);
               }
             }
           );

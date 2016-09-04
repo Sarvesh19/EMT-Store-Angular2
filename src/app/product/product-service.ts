@@ -3,51 +3,64 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Product } from '../model/Product';
 import { Observable } from 'rxjs/Observable';
 import { CategoryService } from '../category/category-service';
-import 'rxjs/Rx'; 
 
 @Injectable()
 export class ProductService {
-    private _productUrl = 'app/model/products.json';
+    private _productListUrl = 'http://localhost:8080/rest/category/';
+    private _productGetUrl = 'http://localhost:8080/rest/product/';
+    private _productPostUrl = 'http://localhost:8080/rest/product';
     constructor(private _http: Http) {
 
     }
-/*
-    createNewProduct(name: string, price: string, quantity: string, description: string, picture: File) {
-        let body = 'name=' +name+ '&category=MySubCategory&price=' +price+ '&quantity=' +quantity+ '&description=' +description+ '&picture=' +picture;
-        /*var formData = new FormData();
-        formData.append("name", name);
-        formData.append("category", "MySubCategory");
-        formData.append("price", price);
-        formData.append("quantity", quantity);
-        formData.append("description", description);
-        formData.append("picture", picture);
+
+    createNewProduct(product: Product) {
+      console.log("BEFORE POST");
+      console.log(product);
+        let body = 'name=' +product.productName+ '&category=' +product.productCategory +'&price=' +product.productPrice
+          +'&quantity=' +product.productQuantity +'&description=' +product.productDescription
+          +'&picture=' +product.productPicture;
         let headers = new Headers({ 'Content-Type': 'multipart/form-data' });
-        let options = new RequestOptions({ headers: headers});
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this._http.post(this._productUrl, body, options).map(response => response.json());
-    }
-*/
-    private handleError(error: Response) {
-        console.error(error);
-        return Observable.throw(error.json().error || ' error');
+        return this._http.post(this._productPostUrl, body, options).map(response => response.json());
     }
 
-    getProducts(): Observable<Product[]> {
-        return this._http.get(this._productUrl)
-            .map((response:Response) => <Product[]>response.json())
-            .do(data => console.log("All: " + JSON.stringify(data)))
-            .catch(this.handleError);
+    getProducts(categoryId: string): Observable<Product[]> {
+      return this._http.get(this._productListUrl +categoryId)
+        .map(this.extractData)
+        .catch(this.handleError);
     }
 
-    getProductsByCategoryID(id: string): Observable<Product[]> {
-        return this.getProducts()
-            .map((products: Product[]) => products.filter(p => p.productCategory == id));
+    getProductsByCategoryID(categoryId: string): Observable<Product[]> {
+        return this.getProducts(categoryId);
     }
 
-    getProduct(id: string): Observable<Product> {
-        console.log("ENTERING SERVICE");
-        return this.getProducts()
-            .map((products: Product[]) => products.find(p => p.identifier == id))
-            
+    getProduct(productId: string): Observable<Product> {
+      return this._http.get(this._productGetUrl +productId)
+        .map(this.extractData)
+        .catch(this.handleError);
+    }
+
+    private extractData(res: Response) {
+      let body = res.json();
+      console.log("THIS IS THE BODY: ");
+      console.log(body);
+      //TODO: fix this workaround for creating the picture url
+      if(body === null) {
+        return {};
+      }
+      for(let product of body) {
+        product.productPicture = 'http://localhost:8080/product/' +product.identifier +'/picture';
+        console.log("TIMES");
+      }
+      if(body.length === undefined) {
+        body.productPicture = 'http://localhost:8080/product/' +body.identifier +'/picture';
+      }
+      return body || {};
+    }
+
+    private handleError (error: Response) {
+      console.error(error);
+      return Observable.throw(error.json().error || ' error');
     }
 }

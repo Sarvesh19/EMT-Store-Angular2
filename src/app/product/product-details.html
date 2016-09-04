@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <div class="thumbnail" *ngIf="product">
-                <img class="img-responsive" [src]="product.picture" [title]="product.productName">
+                <img class="img-responsive" [src]="product.productPicture" [title]="product.productName">
                 <div class="caption">
                     <hr/>
-                    <h4 class="pull-right price">$<span>{{product.price}}</span></h4>
+                    <h4 class="pull-right">$<span>{{product.productPrice}}</span></h4>
                     <h4>
                         {{product.productName}}
                     </h4>

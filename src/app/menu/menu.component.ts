@@ -1,10 +1,12 @@
 import {Component, OnInit} from "@angular/core";
 import {Category} from "../model/category";
 import {CategoryService} from "../category/category-service";
+import { ROUTER_DIRECTIVES, ActivatedRoute,RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'menu',
-  templateUrl: './app/menu/menu.component.html'
+  templateUrl: './app/menu/menu.component.html',
+  directives: [ROUTER_DIRECTIVES]
 })
 export class MenuComponent implements OnInit {
 
