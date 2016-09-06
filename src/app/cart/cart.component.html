@@ -9,27 +9,27 @@
                     <th class="text-center">Subtotal</th>
                     <th> </th>
                 </thead>
-                <tbody *ngIf="products">
-                    <tr *ngFor="let product of products">
+                <tbody *ngIf="cartItems">
+                    <tr *ngFor="let cartItem of cartItems">
                         <td class="text-center">
                             <div class="pull-left">
-                                <img [src]="product.picture" style="width:150px;">
+                                <img [src]="cartItem.productEntry.productPicture" style="width:150px;">
                             </div>
                             <div class="padding2">
-                                <a [routerLink]="['/product', product.identifier]">{{product.productName}}</a>
+                                <a [routerLink]="['/product', cartItem.productEntry.identifier]">{{cartItem.productEntry.productName}}</a>
                             </div>
                         </td>
                         <td class="text-center padding">
-                            {{product.price}}
+                            ${{cartItem.productEntry.productPrice}}
                         </td>
                         <td class="text-center padding">
-                            <input type="number" class="text-center" step="1.0" min="0" [ngModel]="product.quantity">
+                            <input type="number" class="text-center" step="1.0" min="0" [ngModel]="cartItem.lineItemEntry.productQuantity">
                         </td>
                         <td class="text-center padding">
-                            {{ product.quantity * product.price | number: '1.2-2' }}
+                            ${{ cartItem.lineItemEntry.productQuantity * cartItem.productEntry.productPrice | number: '1.2-2' }}
                         </td>
                         <td class="padding2">
-                            <button class="btn btn-danger" (click)="removeItem(product)">
+                            <button class="btn btn-danger" (click)="removeItem(cartItem.productEntry.identifier)">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </button>
                         </td>

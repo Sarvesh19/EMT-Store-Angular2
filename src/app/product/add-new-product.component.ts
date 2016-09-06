@@ -23,8 +23,7 @@ export class AddNewProductComponent implements OnInit{
     }
 
     ngOnInit() {
-        console.log("VLEGUVAM VO ADDNEWPRODUCTCOMPONENT");
-      this.logging();
+      //this.logging();
       this.initializeCategories();
     }
 
@@ -42,7 +41,7 @@ export class AddNewProductComponent implements OnInit{
         console.log("Entering here!");
         console.log(product);
         console.log(data);
-        this._productService.createNewProduct(product).subscribe(
+        this._productService.createNewProduct(product, this.picture).subscribe(
                 data => console.log(JSON.stringify(data)),
                 error => console.log("Error HTTP Post Service"),
                 () => console.log("Job Done Post !")

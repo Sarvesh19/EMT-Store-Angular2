@@ -5,17 +5,17 @@
             <div class="row">
                 <div class="col-sm-4 col-lg-4 col-md-4" *ngFor="let product of wishList">
                     <div class="thumbnail">
-                        <img class="img-responsive" [src]="product.picture" [title]="1">
+                        <img class="img-responsive" [src]="product.productPicture" [title]="1">
                         <div class="caption">
                             <hr/>
-                            <h4 class="pull-right price">$<span>{{product.price}}</span></h4>
+                            <h4 class="pull-right price">$<span>{{product.productPrice}}</span></h4>
                             <h4>
                                 <a [routerLink]="['/product', product.identifier]">{{product.productName}}</a>
                             </h4>
-                            <div *ngIf="product.isAvailable">
+                            <div *ngIf="product.productAvailability === true">
                                 <span>In Stock</span><span class="glyphicon glyphicon-ok"></span>
                             </div>
-                            <div *ngIf="product.isAvailable">
+                            <div *ngIf="product.productAvailability === false">
                                 <span>Out of Stock</span><span class="glyphicon glyphicon-remove"></span>
                             </div>
                             <div class="ratings">
@@ -27,6 +27,9 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </p>
+                            </div>
+                            <div class="btn btn-danger btn-block" (click)="removeFromWishList(product.identifier)">
+                              Remove from wishlist
                             </div>
                         </div>
                     </div>

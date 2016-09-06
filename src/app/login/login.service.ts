@@ -6,13 +6,14 @@ export class LoginService {
 
   private loginUrl = 'http://localhost:8080/j_spring_security_check';
   private logoutUrl = 'http://localhost:8080/j_spring_security_logout';
+  private isAuthenticated: boolean = false;
 
   constructor(private http: Http) { }
 
   login(username, password) {
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let body = 'j_username=' +username +'&j_password=' +password;
-    return this.http.post(this.loginUrl, body, { headers: headers });
+    return this.http.post(this.loginUrl, body, { headers: headers, withCredentials: true });
   }
 
   logout() {
@@ -30,5 +31,13 @@ export class LoginService {
     let body = res.json();
     console.log(body);
     return body;
+  }
+
+  setIsAuthenticated(isAuthenticated: boolean): void {
+    this.isAuthenticated = isAuthenticated;
+  }
+
+  isUserAuthenticated(): boolean {
+    return this.isAuthenticated;
   }
 }

@@ -13,13 +13,13 @@ export class ProductService {
 
     }
 
-    createNewProduct(product: Product) {
+    createNewProduct(product: Product, picture: File) {
       console.log("BEFORE POST");
-      console.log(product);
-        let body = 'name=' +product.productName+ '&category=' +product.productCategory +'&price=' +product.productPrice
-          +'&quantity=' +product.productQuantity +'&description=' +product.productDescription
-          +'&picture=' +product.productPicture;
-        let headers = new Headers({ 'Content-Type': 'multipart/form-data' });
+      console.log(product.productPicture);
+        let body = '-XXname=' +product.productName+ '-XXXcategory=' +product.productCategory +'-XXXprice=' +product.productPrice
+          +'-XXXquantity=' +product.productQuantity +'-XXXdescription=' +product.productDescription
+          +'-XXXpicture=' +picture +'-XXX';
+        let headers = new Headers({ 'Content-Type': 'multipart/mixed;boundary=-XXX' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
         return this._http.post(this._productPostUrl, body, options).map(response => response.json());

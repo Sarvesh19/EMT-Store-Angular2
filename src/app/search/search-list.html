@@ -1,0 +1,35 @@
+  <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+          <div class="row">
+              <div class="col-sm-3 col-lg-3 col-md-3" *ngFor="let product of products">
+                  <div class="thumbnail">
+                      <img class="img-responsive" [src]="product.productPicture" [title]="1">
+                      <div class="caption">
+                          <hr/>
+                          <h4 class="pull-right price">$<span>{{product.productPrice}}</span></h4>
+                          <h4>
+                              <a [routerLink]="['/product', product.identifier]">{{product.productName}}</a>
+                          </h4>
+                          <div *ngIf="product.productAvailability === true">
+                              <span>In Stock</span><span class="glyphicon glyphicon-ok"></span>
+                          </div>
+                          <div *ngIf="product.productAvailability === false">
+                              <span>Out of Stock</span><span class="glyphicon glyphicon-remove"></span>
+                          </div>
+                          <div class="ratings">
+                              <hr/>
+                              <p class="pull-right">18 reviews</p>
+                              <p>
+                                  <i class="fa fa-star"></i>
+                                  <i class="fa fa-star"></i>
+                                  <i class="fa fa-star"></i>
+                                  <i class="fa fa-star"></i>
+                                  <i class="fa fa-star"></i>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { ROUTER_DIRECTIVES, RouterLink, RouterOutlet } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
+import { SearchService } from './search/search-service';
+import { SearchComponent } from './search/search.component';
 import {LoginService} from "./login/login.service";
 //import 'rxjs/Rx';
 import './rxjs-operators';
@@ -20,9 +22,9 @@ import { CartService } from './cart/cart-service';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [LoginComponent, HomeComponent, MenuComponent, AddNewProductComponent, ProductListComponent,
-    ROUTER_DIRECTIVES,RouterLink,RouterOutlet, FORM_DIRECTIVES],
-  providers: [LoginService, CategoryService, ProductService, CartService, WishListService, HTTP_PROVIDERS]
+  directives: [LoginComponent, HomeComponent, MenuComponent, AddNewProductComponent, ProductListComponent, SearchComponent,
+    ROUTER_DIRECTIVES, RouterLink, RouterOutlet, FORM_DIRECTIVES],
+  providers: [LoginService, CategoryService, ProductService, CartService, WishListService, SearchService, HTTP_PROVIDERS]
 })
 export class AppComponent {
   title = 'app works!';

@@ -13,7 +13,6 @@ export class LoginComponent {
     username: string = 'admin';
     password: string = 'admin';
     user = null;
-    isLoggedIn: boolean = false;
 
     constructor(private userService: LoginService, private router: Router) { }
 
@@ -26,12 +25,10 @@ export class LoginComponent {
               this.user = result;
               let userId = this.user.identifier;
               if(userId !== null) {
-                this.isLoggedIn = true;
-                console.log("YEEEES");
+                this.userService.setIsAuthenticated(true);
                 //this.router.navigate(['home']);
               } else {
-                this.isLoggedIn = false;
-                console.log("NOOOO");
+                this.userService.setIsAuthenticated(false);
                 //this.router.navigate(['home']);
               }
             }
@@ -43,13 +40,18 @@ export class LoginComponent {
       this.userService.logout().subscribe(
         (result) => {
           this.user = null;
-          this.isLoggedIn = false;
+          this.userService.setIsAuthenticated(false);
           this.router.navigate(['home']);
         }
       );
     }
 
     isAuthenticated(): boolean {
-      return this.isLoggedIn;
+      return this.userService.isUserAuthenticated();
     }
+
+  onSearch(data): void {
+    let queryString = data.query.queryString;
+    this.router.navigate(['search/', queryString]);
+  }
 }

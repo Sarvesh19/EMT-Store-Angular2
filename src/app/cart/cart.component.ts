@@ -15,8 +15,6 @@ import 'rxjs/Rx';
 })
 
 export class CartComponent implements OnInit {
-    products: Product[];
-    lineItems: LineItem[];
     cartItems: CartItem[];
     errorMessage: string;
 
@@ -26,39 +24,15 @@ export class CartComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        this._cartService.getLineItems()
-            .subscribe(lineItems => this.lineItems = lineItems,
-            error => this.errorMessage = <any>error,
-            () => console.log("Site lineItems " + this.lineItems)
-            );
-        this._cartService.getProducts()
-            .subscribe(products => this.products = products,
-            error => this.errorMessage = <any>error,
-            () => console.log("Site products " + this.products)
-            );
-
-        /*
         this._cartService.getCartItems()
             .subscribe(cartItems => this.cartItems = cartItems,
-            error => this.errorMessage = <any>error,
-            () => console.log("Site CartItems " + this.lineItems)
+            error => this.errorMessage = <any>error
             );
-        */
     }
 
-    removeItem(product: Product) {
-        var index = this.products.indexOf(product);
-        this.products.splice(index, 1);
-        console.log("se povikuva removeItem");
-    }
 
-    /*
-    removeItem(product: CartItem) {
-        var index = this.cartItems.indexOf(product);
-        this.cartItems.splice(index, 1);
-        console.log("se povikuva removeItem");
+    removeItem(productId: string) {
+      this._cartService.removeProductFromCart(productId).subscribe(result => console.log("DONE"));
     }
-    */
 
 }

@@ -4,7 +4,9 @@ import { ProductDetailsComponent } from './product/product-details.component';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { AddNewProductComponent } from './product/add-new-product.component';
 import { AddNewCategoryComponent } from './category/add-new-category.component';
+import { UserDetailsComponent } from './login/user-details.component';
 import { CartComponent } from './cart/cart.component';
+import { SearchComponent } from './search/search.component';
 import { provideRouter, RouterConfig} from '@angular/router';
 
 export const AppRoutes: RouterConfig = [
@@ -15,5 +17,7 @@ export const AppRoutes: RouterConfig = [
   { path: 'products/new', component: AddNewProductComponent },
   { path: 'categories/new', component: AddNewCategoryComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'wishList', component: WishListComponent }
+  { path: 'wishList', component: WishListComponent },
+  { path: 'user', component: UserDetailsComponent },
+  { path: 'search/:queryString', component: SearchComponent }
 ];

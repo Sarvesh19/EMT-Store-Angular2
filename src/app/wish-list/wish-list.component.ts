@@ -23,6 +23,8 @@ export class WishListComponent implements OnInit{
         () => console.log(" WISHLIST: " + this.wishList)
     }
 
-
+    removeFromWishList(identifier : string) {
+      this._wishListService.removeFromWishList(identifier).subscribe(result => console.log("done-to"));
+    }
 
 }

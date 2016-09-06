@@ -20,8 +20,8 @@
                             <i class="fa fa-star"></i>
                         </p>
                         <button class="btn btn-default" (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
-                        <button class="btn btn-danger" (click)="addToWishlist()">Add to wish list</button>
-                        <button class="btn btn-primary" (click)="addToCart()">Add to cart</button>
+                        <button class="btn btn-danger" (click)="addToWishlist()" *ngIf="isAuthenticated() === true">Add to wish list</button>
+                        <button class="btn btn-primary" (click)="addToCart()" *ngIf="isAuthenticated() === true">Add to cart</button>
                     </div>
                 </div>
             </div>
